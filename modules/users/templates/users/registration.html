@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Registration</h1>
+    <form method="POST" action=".">
+        {% csrf_token %}
+        {% for field in form %}
+        <div>
+            {% if field.errors %}
+            {% for error in field.errors %}
+            <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+            {{ field }}
+        </div>
+        {% endfor %}
+        <input type="submit" value="Registration">
+    </form>
+</div>
+{% endblock %}

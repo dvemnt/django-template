@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Authentication{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Authentication</h1>
+    <form method="POST" action=".">
+        {% csrf_token %}
+        {% for field in form %}
+        <div>
+            {% if field.errors %}
+            {% for error in field.errors %}
+            <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+            {{ field }}
+        </div>
+        {% endfor %}
+        <input type="submit" value="Authentication">
+    </form>
+</div>
+{% endblock %}

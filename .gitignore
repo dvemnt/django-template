@@ -1,0 +1,7 @@
+*.py[codw]
+__pycache__/
+
+logs/
+*.log
+local*
+!locale

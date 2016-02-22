@@ -1,0 +1,6 @@
+{% extends 'email.html' %}
+
+{% block message %}
+<p>Thanks you for registration.</p>
+<p>For activate your account please go by link: {{ verification_url }}</p>
+{% endblock %}
