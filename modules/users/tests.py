@@ -15,14 +15,15 @@ class CompositeDocstringTestCase(test.TestCase):
 
     @classmethod
     def __new__(cls, *args, **kwargs):
-        """Override initialization."""
+        """Override create class."""
         cls = super(CompositeDocstringTestCase, cls).__new__(*args, **kwargs)
         tests = [attr for attr in dir(cls) if attr.startswith('test_')]
         for test_name in tests:
             test_method = getattr(cls, test_name)
-            test_method.__func__.__doc__ = '{}: {}'.format(
-                cls.__doc__, test_method.__func__.__doc__
-            )
+            if cls.__doc__ not in test_method.__doc__:
+                test_method.__func__.__doc__ = '{}: {}'.format(
+                    cls.__doc__, test_method.__func__.__doc__
+                )
         return cls
 
 @test.override_settings(EMAIL_BACKEND=EMAIL_BACKEND)
